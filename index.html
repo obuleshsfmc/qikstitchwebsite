@@ -15,11 +15,11 @@ html { scroll-behavior: smooth; }
 body{color:#1F2937;background:#fff; line-height: 1.6;}
 a{text-decoration:none;color:inherit}
 
-  /* Fix for Fixed Header blocking section titles */
+/* Fix for Fixed Header blocking section titles */
 section {
     scroll-margin-top: 80px; /* This creates a 'buffer' so sections don't hide under the header */
 }
-  
+
 /* ================= LOGO ================= */
 .logo {
   font-family: 'Poppins', 'Segoe UI', sans-serif;
@@ -163,44 +163,73 @@ header{
 footer{
   background:#000;
   color:#fff;
-  padding:50px 20px 20px;
-  text-align:center;
+  padding:40px 20px 20px; /* reduced padding */
+  text-align:center; /* better for multi-column layout */
 }
 
 .footer-content{
   max-width:1200px;
   margin:auto;
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:30px;
-  justify-items:center;
+  grid-template-columns:repeat(5, 1fr); /* force 5 columns */
+  gap:16px; /* reduced spacing */
+  align-items:center;
 }
 
 footer h3{
   color:#fff;
   font-weight:700;
+  font-size:18px;
+  margin-bottom:10px;
 }
 
-footer h3:first-child{
-  font-size:26px;
+footer a{
+  color:#fff;
+  font-size:14px;
 }
 
-footer a{color:#fff}
+.footer-content p{
+  font-size:14px;
+  margin:6px 0; /* reduce vertical spacing */
+}
 
 .footer-apps img{
-  height:48px;
-  margin:8px;
+  height:42px; /* slightly smaller */
+  margin:6px 4px;
 }
 
 .footer-social i{
-  font-size:30px;
-  margin:0 14px;
+  font-size:22px;
+  margin:0 8px;
 }
 
 .footer-bottom{
   text-align:center;
-  margin-top:30px;
-  opacity:.85;
+  margin-top:20px;
+  font-size:13px;
+  opacity:.8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px){
+  .footer-content{
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+  }
+}
+
+@media (max-width: 600px){
+  footer{
+    text-align:center;
+  }
+
+  .footer-content{
+    grid-template-columns:1fr;
+  }
+
+  .footer-social i{
+    margin:0 10px;
+  }
 }
 
 /* ================= HOW IT WORKS ================= */
@@ -374,6 +403,15 @@ footer a{color:#fff}
         <i class="fab fa-linkedin"></i>
       </div>
     </div>
+    <div>
+      <h3>Registered Office</h3>
+      <p>
+        QikStitch Services Pvt Ltd<br>
+        #9-397, Gulzarpet,<br>
+        Anantapur – 560001,<br>
+        Andhra Pradesh, India
+      </p>
+    </div>
   </div>
   <div class="footer-bottom">© 2025 QikStitch Services Pvt Ltd</div>
 </footer>
@@ -381,7 +419,7 @@ footer a{color:#fff}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
    (function(){
-      emailjs.init("5n0lmScyDxQWJ1xuX");
+      emailjs.init("tjZub0KcDl-PL7Vy7wFUA");
    })();
 </script>
 
@@ -450,11 +488,11 @@ document.getElementById("tailorForm").addEventListener("submit", function(e) {
     const form = this;
 
     // 1️⃣ Send email to admin (info@qikstitch.in)
-    emailjs.sendForm('service_1ekjutu', 'template_roupxxg', form)
+    emailjs.sendForm('service_1ekjutu', 'template_admin', form)
         .then(() => {
 
             // 2️⃣ Send auto-reply to user
-            return emailjs.sendForm('service_1ekjutu', 'template_5jlslm8', form);
+            return emailjs.sendForm('service_1ekjutu', 'template_user_reply', form);
 
         })
         .then(() => {
@@ -474,10 +512,6 @@ document.getElementById("tailorForm").addEventListener("submit", function(e) {
             successBox.style.color = "#991B1B";
             successBox.innerText = "❌ Error: Failed to send.";
         });
-});
-</script>
+});</script>
 </body>
 </html>
-
-
-
