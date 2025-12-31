@@ -33,17 +33,6 @@ a{text-decoration:none;color:inherit}
   font-style: italic;
 }
 
-/*.logo::after {
-  content: "";
-  display: block;
-  width: 150%;
-  height: 3px;
-  background: linear-gradient(to right, #0F766E, #F97316);
-  margin-top: 6px;
-  border-radius: 2px;
-}*/
-
-
 /* ================= LOADER ================= */
 #loader{
   position:fixed;inset:0;background:#fff;
@@ -98,11 +87,9 @@ header{
 .hero-content{max-width:850px;margin:auto}
 .hero h1{
   font-size:60px;color:#0F766E;margin-bottom:20px;
-  animation:fadeDown 1s ease forwards;
 }
 .hero p{
   font-size:20px;margin-bottom:25px;
-  animation:fadeUp 1.2s ease forwards;
 }
 
 /* HERO CTA */
@@ -167,7 +154,7 @@ header{
 .send-btn{ background:#0F766E; color:white; padding:18px; border:none; border-radius:12px; font-weight:700; cursor:pointer; transition: .3s; }
 .success-box{ display:none; text-align:center; padding:20px; background:#ECFDF5; color:#065f46; border-radius:12px; }
 
-/* ================= FOOTER (UPDATED AS REQUESTED) ================= */
+/* ================= FOOTER ================= */
 footer{
   background:#000;
   color:#fff;
@@ -256,7 +243,6 @@ footer a{color:#fff}
       <a href="#about">About Us</a>
       <a href="#services">Services</a>
       <a href="#how">How It Works</a>
-     <!-- <a href="#contact">Contact Us</a> -->
       <a href="#contact" class="hero-btn">Partner with Us <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
@@ -265,7 +251,6 @@ footer a{color:#fff}
 <section class="hero" id="home">
   <h1>Custom Tailoring,<br>Redefined for You.</h1>
   <p>Expert tailoring for Men, Women & Children — delivered to your doorstep.</p>
- <!-- <a href="#contact" class="hero-btn">Partner with Us <i class="fa-solid fa-arrow-right"></i></a> -->
   <div class="store-buttons">
     <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
     <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
@@ -276,14 +261,14 @@ footer a{color:#fff}
   <div class="section-title"><h2>About Us</h2></div>
   <div class="about-container">
     <div class="about-text">
-      <p>QikStitch is more than just a tailoring service — it's a revolution in how you experience fashion. We bring professional tailoring to your doorstep, ensuring that every garment fits perfectly and reflects your style.</p></br>
-      <p>With a team of skilled tailors, we handle men’s, women’s, and children’s clothing, from casual wear to formal and ethnic outfits. Our process ensures precision, quality, and a seamless experience for all our customers.</p></br>
+      <p>QikStitch is more than just a tailoring service — it's a revolution in how you experience fashion. We bring professional tailoring to your doorstep, ensuring that every garment fits perfectly and reflects your style.</p><br>
+      <p>With a team of skilled tailors, we handle men’s, women’s, and children’s clothing, from casual wear to formal and ethnic outfits. Our process ensures precision, quality, and a seamless experience for all our customers.</p><br>
       <p>We also partner with boutiques, designers, and fashion entrepreneurs, enabling them to scale their services without compromising on quality. Join us as we transform the tailoring industry with convenience, innovation, and excellence.</p>
     </div>
     <div class="about-images">
-      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_1.png" class="about-img about-img-1">
-      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_2.png" class="about-img about-img-2">
-      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_3.png" class="about-img about-img-3">
+      <img src="https://raw.githubusercontent.com/obuleshsfmc/qikstitchwebsite/main/qikstitch_ethnic_1.png" class="about-img about-img-1">
+      <img src="https://raw.githubusercontent.com/obuleshsfmc/qikstitchwebsite/main/qikstitch_ethnic_2.png" class="about-img about-img-2">
+      <img src="https://raw.githubusercontent.com/obuleshsfmc/qikstitchwebsite/main/qikstitch_ethnic_3.png" class="about-img about-img-3">
     </div>
   </div>
 </section>
@@ -306,7 +291,6 @@ footer a{color:#fff}
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
 <section class="section" id="how">
   <div class="section-title"><h2>How It Works</h2></div>
   <div class="steps">
@@ -335,20 +319,20 @@ footer a{color:#fff}
 
 <section class="section reveal" id="contact">
     <form class="contact-container" id="tailorForm">
-      <div class="section-title"><h2>Contact Us</h2></div>
-      <input type="text" name="first_name" id="firstName" placeholder="First Name" required>
-      <input type="text" name="last_name" id="lastName" placeholder="Last Name" required>
-      <input type="email" name="user_email" id="email" placeholder="Email Address" required>
-      <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" required>
-      <select name="user_role" id="role" class="role-select">
-      <option value="">You are a...</option>
-      <option value="Customer">Customer</option>
-      <option value="Tailor">Tailor</option>
-      <option value="Delivery Partner">Delivery Partner</option>
-      </select>
-      <textarea name="message" id="message" placeholder="Message"></textarea>
-      <button type="submit" class="send-btn">Submit<i class="fa-solid fa-paper-plane"></i></button>
-      <div class="success-box" id="successBox">🎉 Thank you! We’ll contact you shortly.</div>
+        <div class="section-title"><h2>Contact Us</h2></div>
+        <input type="text" name="first_name" id="firstName" placeholder="First Name" required>
+        <input type="text" name="last_name" id="lastName" placeholder="Last Name" required>
+        <input type="email" name="user_email" id="email" placeholder="Email Address" required>
+        <input type="tel" name="mobile" id="mobile" placeholder="10-Digit Mobile Number" maxlength="10" required>
+        <select name="user_role" id="role" class="role-select" required>
+            <option value="">You are a...</option>
+            <option value="Customer">Customer</option>
+            <option value="Tailor">Tailor</option>
+            <option value="Delivery Partner">Delivery Partner</option>
+        </select>
+        <textarea name="message" id="message" placeholder="Message"></textarea>
+        <button type="submit" class="send-btn" id="submitBtn">Submit <i class="fa-solid fa-paper-plane"></i></button>
+        <div class="success-box" id="successBox"></div>
     </form>
 </section>
 
@@ -389,14 +373,13 @@ footer a{color:#fff}
   <div class="footer-bottom">© 2025 QikStitch Services Pvt Ltd</div>
 </footer>
 
-/*==========EmailJS=========*/
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 <script type="text/javascript">
    (function(){
-      // Replace with your PUBLIC KEY if "tjZub0KcDl-PL7Vy7wFUA" is not correct
       emailjs.init("tjZub0KcDl-PL7Vy7wFUA");
    })();
 </script>
+
 <script>
 // --- NAVIGATION & LOADER ---
 const menuBtn = document.getElementById('mobile-menu-btn');
@@ -423,40 +406,63 @@ function revealOnScroll() {
 }
 window.addEventListener("scroll", revealOnScroll);
 
-// --- FORM SUBMISSION ---
-    document.getElementById("tailorForm").addEventListener("submit", function(e) {
-        e.preventDefault();
-        
-        const btn = document.getElementById('submitBtn');
-        const successBox = document.getElementById("successBox");
-        
-        // Visual Feedback
-        btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-        btn.disabled = true;
-        successBox.style.display = "none";
+// --- MOBILE INPUT RESTRICTION ---
+const mobileInput = document.getElementById('mobile');
+mobileInput.addEventListener('input', function (e) {
+    this.value = this.value.replace(/[^0-9]/g, ''); // Remove non-numeric
+    if (this.value.length > 10) {
+        this.value = this.value.slice(0, 10);
+    }
+});
 
-        const serviceID = 'service_1ekjutu';
-        const templateID = 'template_5jlslm8';
+// --- FORM SUBMISSION WITH VALIDATION ---
+document.getElementById("tailorForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    const btn = document.getElementById('submitBtn');
+    const successBox = document.getElementById("successBox");
+    const mobileField = document.getElementById('mobile');
+    const emailField = document.getElementById('email');
 
-        emailjs.sendForm(serviceID, templateID, this)
-            .then(() => {
-                btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
-                btn.disabled = false;
-                successBox.style.display = "block";
-                successBox.style.background = "#ECFDF5";
-                successBox.style.color = "#065f46";
-                successBox.innerText = "🎉 Thank you! We’ll contact you shortly.";
-                this.reset();
-            }, (err) => {
-                btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
-                btn.disabled = false;
-                successBox.style.display = "block";
-                successBox.style.background = "#FEF2F2";
-                successBox.style.color = "#991B1B";
-                successBox.innerText = "❌ Error: " + (err.text || "Failed to send");
-                console.error("EmailJS Error:", err);
-            });
-    });
+    // 1. Validate Mobile Length
+    const mobileValue = mobileField.value.trim();
+    if (mobileValue.length !== 10) {
+        alert("Mobile number must be exactly 10 digits.");
+        mobileField.focus();
+        return;
+    }
+
+    // 2. Extra JS Validation for Email
+    const emailValue = emailField.value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+        alert("Please enter a valid email address.");
+        emailField.focus();
+        return;
+    }
+
+    // If valid, proceed to Send
+    btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+    btn.disabled = true;
+    successBox.style.display = "none";
+
+    emailjs.sendForm('service_1ekjutu', 'template_5jlslm8', this)
+        .then(() => {
+            btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
+            btn.disabled = false;
+            successBox.style.display = "block";
+            successBox.style.background = "#ECFDF5";
+            successBox.style.color = "#065f46";
+            successBox.innerText = "🎉 Thank you! We’ll contact you shortly.";
+            this.reset();
+        }, (err) => {
+            btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
+            btn.disabled = false;
+            successBox.style.display = "block";
+            successBox.style.background = "#FEF2F2";
+            successBox.style.color = "#991B1B";
+            successBox.innerText = "❌ Error: Failed to send.";
+        });
+});
 </script>
 </body>
 </html>
