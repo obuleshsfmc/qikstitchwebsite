@@ -429,28 +429,34 @@ document.getElementById("tailorForm").addEventListener("submit", function(e) {
     const mobileField = document.getElementById('mobile');
     const emailField = document.getElementById('email');
 
-    // 1. Validate Mobile Length
-    const mobileValue = mobileField.value.trim();
-    if (mobileValue.length !== 10) {
+    // Mobile validation
+    if (mobileField.value.trim().length !== 10) {
         alert("Mobile number must be exactly 10 digits.");
         mobileField.focus();
         return;
     }
 
-    // 2. Extra JS Validation for Email
-    const emailValue = emailField.value.trim();
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+    // Email validation
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
         alert("Please enter a valid email address.");
         emailField.focus();
         return;
     }
 
-    // If valid, proceed to Send
     btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
     btn.disabled = true;
     successBox.style.display = "none";
 
-    emailjs.sendForm('service_1ekjutu', 'template_5jlslm8', this)
+    const form = this;
+
+    // 1️⃣ Send email to admin (info@qikstitch.in)
+    emailjs.sendForm('service_1ekjutu', 'template_roupxxg', form)
+        .then(() => {
+
+            // 2️⃣ Send auto-reply to user
+            return emailjs.sendForm('service_1ekjutu', 'template_5jlslm8', form);
+
+        })
         .then(() => {
             btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
             btn.disabled = false;
@@ -458,8 +464,9 @@ document.getElementById("tailorForm").addEventListener("submit", function(e) {
             successBox.style.background = "#ECFDF5";
             successBox.style.color = "#065f46";
             successBox.innerText = "🎉 Thank you! We’ll contact you shortly.";
-            this.reset();
-        }, (err) => {
+            form.reset();
+        })
+        .catch(() => {
             btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
             btn.disabled = false;
             successBox.style.display = "block";
@@ -471,5 +478,6 @@ document.getElementById("tailorForm").addEventListener("submit", function(e) {
 </script>
 </body>
 </html>
+
 
 
