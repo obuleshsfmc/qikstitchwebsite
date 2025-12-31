@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>QikStitch | Custom Tailoring Redefined</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+/* Base Reset */
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+html { scroll-behavior: smooth; }
+body{color:#1F2937;background:#fff; line-height: 1.6;}
+a{text-decoration:none;color:inherit}
+
+/* ================= LOGO ================= */
+.logo {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.logo .qik {
+  color: #0F766E; /* Teal */
+  font-style: italic;
+}
+
+.logo .stitch {
+  color: #F97316; /* Orange */
+  font-style: italic;
+}
+
+/*.logo::after {
+  content: "";
+  display: block;
+  width: 150%;
+  height: 3px;
+  background: linear-gradient(to right, #0F766E, #F97316);
+  margin-top: 6px;
+  border-radius: 2px;
+}*/
+
+
+/* ================= LOADER ================= */
+#loader{
+  position:fixed;inset:0;background:#fff;
+  display:flex;align-items:center;justify-content:center;
+  z-index:5000;
+}
+.loader-circle{
+  width:60px;height:60px;
+  border:5px solid #f3f3f3;
+  border-top:5px solid #0F766E;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ================= HEADER & NAV ================= */
+header{
+  position:fixed;width:100%;top:0;background:rgba(255,255,255,0.98);
+  backdrop-filter: blur(10px);
+  box-shadow:0 2px 20px rgba(0,0,0,.05);z-index:1000;
+}
+.navbar{
+  max-width:1200px;margin:auto;padding:15px 20px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.logo{font-size:28px;font-weight:800;color:#0F766E; letter-spacing: -1px;}
+
+.nav-links { display: flex; align-items: center; }
+.nav-links a{margin-left:25px;font-weight:600; font-size: 15px; transition:.3s; color: #4B5563;}
+.nav-links a:hover{color:#0F766E}
+
+/* Hamburger Icon */
+.menu-toggle { display: none; font-size: 24px; cursor: pointer; color: #0F766E; }
+
+@media(max-width:768px){
+  .menu-toggle { display: block; }
+  .nav-links {
+    position: fixed; top: 70px; left: -100%; flex-direction: column;
+    background: #fff; width: 100%; height: calc(100vh - 70px);
+    transition: 0.4s ease-in-out; padding-top: 40px; text-align: center;
+  }
+  .nav-links.active { left: 0; }
+  .nav-links a { margin: 15px 0; font-size: 18px; display: block; }
+}
+
+/* ================= HERO ================= */
+.hero{
+  padding:140px 20px 110px;
+  background:linear-gradient(135deg,#ECFDF5,#fff);
+  text-align:center;
+}
+.hero-content{max-width:850px;margin:auto}
+.hero h1{
+  font-size:60px;color:#0F766E;margin-bottom:20px;
+  animation:fadeDown 1s ease forwards;
+}
+.hero p{
+  font-size:20px;margin-bottom:25px;
+  animation:fadeUp 1.2s ease forwards;
+}
+
+/* HERO CTA */
+.hero-btn{
+  padding:16px 38px;
+  background:linear-gradient(135deg,#FACC15,#fde047);
+  color:#0F766E;
+  font-weight:800;
+  font-size:18px;
+  border-radius:50px;
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  animation:pulse 2s infinite;
+}
+.hero-btn i{animation:arrowBounce 1.5s infinite}
+
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(250,204,21,.7)}
+  70%{box-shadow:0 0 0 15px rgba(250,204,21,0)}
+  100%{box-shadow:0 0 0 0 rgba(250,204,21,0)}
+}
+@keyframes arrowBounce{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(6px)}
+}
+
+/* STORE BUTTONS */
+.store-buttons{
+  display:flex;justify-content:center;
+  gap:18px;flex-wrap:wrap;margin-top:28px;
+}
+.store-buttons img{height:52px}
+
+/* ================= SECTIONS ================= */
+.section{padding:60px 20px; max-width: 1200px; margin: auto;}
+.section-title{text-align:center;margin-bottom:60px}
+.section-title h2{font-size:42px; color:#111827; position: relative; padding-bottom: 10px;}
+.section-title h2::after {
+    content: ''; width: 60px; height: 4px; background: #0F766E; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); border-radius: 10px;
+}
+
+/* ABOUT */
+.about-container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: center; }
+.about-img { width: 160px; height: 220px; object-fit: cover; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.about-img-2 { transform: translateY(30px); }
+
+/* SERVICES */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+.service-card { border-radius: 24px; overflow: hidden; background: white; border: 1px solid #f3f4f6; transition: 0.4s; padding: 10px; text-align: center;}
+.service-img { width: 100%; height: 220px; background-size: cover; border-radius: 18px; display: flex; justify-content: center; align-items: center; }
+.service-img i { font-size: 40px; color: white; background: rgba(15, 118, 110, 0.8); width: 80px; height: 80px; display: grid; place-items: center; border-radius: 50%; }
+
+/* CONTACT FORM */
+.contact-container{
+  max-width:700px; margin:auto; display:grid; grid-template-columns: 1fr 1fr; gap:15px;
+  background: #fff; padding: 40px; border-radius: 30px; box-shadow: 0 40px 100px rgba(0,0,0,0.08);
+}
+.contact-container .section-title { grid-column: span 2; margin-bottom: 20px; }
+.contact-container input, .contact-container select, .contact-container textarea { padding:15px; border:1.5px solid #E5E7EB; border-radius:12px; width: 100%; }
+.contact-container textarea, .contact-container .role-select, .send-btn, .success-box { grid-column: span 2; }
+.send-btn{ background:#0F766E; color:white; padding:18px; border:none; border-radius:12px; font-weight:700; cursor:pointer; transition: .3s; }
+.success-box{ display:none; text-align:center; padding:20px; background:#ECFDF5; color:#065f46; border-radius:12px; }
+
+/* ================= FOOTER (UPDATED AS REQUESTED) ================= */
+footer{
+  background:#000;
+  color:#fff;
+  padding:50px 20px 20px;
+  text-align:center;
+}
+
+.footer-content{
+  max-width:1200px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
+  justify-items:center;
+}
+
+footer h3{
+  color:#fff;
+  font-weight:700;
+}
+
+footer h3:first-child{
+  font-size:26px;
+}
+
+footer a{color:#fff}
+
+.footer-apps img{
+  height:48px;
+  margin:8px;
+}
+
+.footer-social i{
+  font-size:30px;
+  margin:0 14px;
+}
+
+.footer-bottom{
+  text-align:center;
+  margin-top:30px;
+  opacity:.85;
+}
+
+/* ================= HOW IT WORKS ================= */
+.steps {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  text-align: center;
+}
+.step {
+  padding: 20px;
+  background: #F0FDF4;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+.step span { font-size: 36px; font-weight: 700; color: #FACC15; }
+.step:hover { transform: translateY(-5px); }
+
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(30px); transition: 1s all ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+@media(max-width:768px){
+    .contact-container { grid-template-columns: 1fr; padding: 20px;}
+    .contact-container * { grid-column: span 1 !important; }
+}
+
+/*==========EmailJS==============*/
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      emailjs.init("tjZub0KcDl-PL7Vy7wFUA"); // You get this from EmailJS Dashboard
+   })();
+</script>
+
+</style>
+</head>
+
+<body>
+
+<div id="loader"><div class="loader-circle"></div></div>
+
+<header>
+  <div class="navbar">
+    <div class="logo">
+      <span class="qik">Qik</span><span class="stitch">Stitch</span>
+    </div>
+    <div class="menu-toggle" id="mobile-menu-btn"><i class="fa-solid fa-bars"></i></div>
+    <div class="nav-links" id="nav-menu">
+      <a href="#home">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#services">Services</a>
+      <a href="#how">How It Works</a>
+     <!-- <a href="#contact">Contact Us</a> -->
+      <a href="#contact" class="hero-btn">Partner with Us <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <h1>Custom Tailoring,<br>Redefined for You.</h1>
+  <p>Expert tailoring for Men, Women & Children — delivered to your doorstep.</p>
+ <!-- <a href="#contact" class="hero-btn">Partner with Us <i class="fa-solid fa-arrow-right"></i></a> -->
+  <div class="store-buttons">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
+    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+  </div>
+</section>
+
+<section class="section reveal" id="about">
+  <div class="section-title"><h2>About Us</h2></div>
+  <div class="about-container">
+    <div class="about-text">
+      <p>QikStitch is more than just a tailoring service — it's a revolution in how you experience fashion. We bring professional tailoring to your doorstep, ensuring that every garment fits perfectly and reflects your style.</p></br>
+      <p>With a team of skilled tailors, we handle men’s, women’s, and children’s clothing, from casual wear to formal and ethnic outfits. Our process ensures precision, quality, and a seamless experience for all our customers.</p></br>
+      <p>We also partner with boutiques, designers, and fashion entrepreneurs, enabling them to scale their services without compromising on quality. Join us as we transform the tailoring industry with convenience, innovation, and excellence.</p>
+    </div>
+    <div class="about-images">
+      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_1.png" class="about-img about-img-1">
+      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_2.png" class="about-img about-img-2">
+      <img src="https://github.com/obuleshsfmc/qikstitchwebsite/blob/main/qikstitch_ethnic_3.png" class="about-img about-img-3">
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="services">
+  <div class="section-title"><h2>Our Services</h2></div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1611581077152-2d2b19b63a68?w=400');"><i class="fa-solid fa-user-tie"></i></div>
+      <h3>Men Tailoring</h3><p>Custom fit, premium stitching, and doorstep service.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1606312612271-8a7d71d2ed4f?w=400');"><i class="fa-solid fa-person-dress"></i></div>
+      <h3>Women Tailoring</h3><p>Elegant designs and expert measurements at your convenience.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-img" style="background-image: url('https://images.unsplash.com/photo-1592342295538-f3b0d2e8f178?w=400');"><i class="fa-solid fa-child"></i></div>
+      <h3>Kids Tailoring</h3><p>Comfortable and perfect fit for your children.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section" id="how">
+  <div class="section-title"><h2>How It Works</h2></div>
+  <div class="steps">
+    <div class="step">
+      <span>1</span>
+      <h3>Place Order</h3>
+      <p>Select dress & fabric</p>
+    </div>
+    <div class="step">
+      <span>2</span>
+      <h3>Measurement</h3>
+      <p>Doorstep measurement</p>
+    </div>
+    <div class="step">
+      <span>3</span>
+      <h3>Stitching</h3>
+      <p>Expert tailor stitching</p>
+    </div>
+    <div class="step">
+      <span>4</span>
+      <h3>Delivery</h3>
+      <p>Delivered to your home</p>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="contact">
+    <form class="contact-container" id="tailorForm">
+      <div class="section-title"><h2>Contact Us</h2></div>
+      <input type="text" name="first_name" id="firstName" placeholder="First Name" required>
+      <input type="text" name="last_name" id="lastName" placeholder="Last Name" required>
+      <input type="email" name="user_email" id="email" placeholder="Email Address" required>
+      <input type="text" name="mobile" id="mobile" placeholder="Mobile Number" required>
+      <select name="user_role" id="role" class="role-select">
+      <option value="">You are a...</option>
+      <option value="Customer">Customer</option>
+      <option value="Tailor">Tailor</option>
+      <option value="Delivery Partner">Delivery Partner</option>
+      </select>
+      <textarea name="message" id="message" placeholder="Message"></textarea>
+      <button type="submit" class="send-btn">Submit<i class="fa-solid fa-paper-plane"></i></button>
+      <div class="success-box" id="successBox">🎉 Thank you! We’ll contact you shortly.</div>
+    </form>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <div>
+    <div class="logo">
+      <span class="qik">Qik</span><span class="stitch">Stitch</span>
+    </div>
+      <p><a href="#home">Home</a></p>
+      <p><a href="#about">About Us</a></p>
+      <p><a href="#services">Services</a></p>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+    </div>
+    <div>
+      <h3>Customer Apps</h3>
+      <div class="footer-apps">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg">
+      </div>
+    </div>
+    <div>
+      <h3>Partner App</h3>
+      <div class="footer-apps">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg">
+      </div>
+    </div>
+    <div>
+      <h3>Follow Us</h3>
+      <div class="footer-social">
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2025 QikStitch Services Pvt Ltd</div>
+</footer>
+
+<script>
+// --- NAVIGATION & LOADER ---
+const menuBtn = document.getElementById('mobile-menu-btn');
+const navMenu = document.getElementById('nav-menu');
+menuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    menuBtn.querySelector('i').classList.toggle('fa-bars');
+    menuBtn.querySelector('i').classList.toggle('fa-xmark');
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => navMenu.classList.remove('active'));
+});
+
+window.addEventListener("load", () => {
+  document.getElementById("loader").style.display = "none";
+  revealOnScroll();
+});
+
+const reveals = document.querySelectorAll(".reveal");
+function revealOnScroll() {
+  reveals.forEach(s => {
+    if (s.getBoundingClientRect().top < window.innerHeight - 100) s.classList.add("active");
+  });
+}
+window.addEventListener("scroll", revealOnScroll);
+
+// --- FORM ---
+document.getElementById("tailorForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+  
+  const btn = e.target.querySelector('.send-btn');
+  const successBox = document.getElementById("successBox");
+  
+  btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+  btn.disabled = true;
+
+  // These IDs come from your EmailJS Dashboard
+  const serviceID = 'service_1ekjutu';
+  const templateID = 'template_5jlslm8';
+
+  emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
+      btn.disabled = false;
+      successBox.style.display = "block";
+      successBox.innerText = "🎉 Sent successfully! Check your email for a confirmation.";
+      this.reset();
+    }, (err) => {
+      btn.innerText = 'Error!';
+      btn.disabled = false;
+      alert("Failed to send: " + JSON.stringify(err));
+    });
+});
+</script>
+</body>
+</html>
