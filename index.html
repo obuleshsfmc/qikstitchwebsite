@@ -238,15 +238,6 @@ footer a{color:#fff}
     .contact-container { grid-template-columns: 1fr; padding: 20px;}
     .contact-container * { grid-column: span 1 !important; }
 }
-
-/*==========EmailJS==============*/
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init("tjZub0KcDl-PL7Vy7wFUA"); // You get this from EmailJS Dashboard
-   })();
-</script>
-
 </style>
 </head>
 
@@ -398,6 +389,14 @@ footer a{color:#fff}
   <div class="footer-bottom">© 2025 QikStitch Services Pvt Ltd</div>
 </footer>
 
+/*==========EmailJS=========*/
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      // Replace with your PUBLIC KEY if "tjZub0KcDl-PL7Vy7wFUA" is not correct
+      emailjs.init("tjZub0KcDl-PL7Vy7wFUA");
+   })();
+</script>
 <script>
 // --- NAVIGATION & LOADER ---
 const menuBtn = document.getElementById('mobile-menu-btn');
@@ -424,33 +423,40 @@ function revealOnScroll() {
 }
 window.addEventListener("scroll", revealOnScroll);
 
-// --- FORM ---
-document.getElementById("tailorForm").addEventListener("submit", function(e) {
-  e.preventDefault();
-  
-  const btn = e.target.querySelector('.send-btn');
-  const successBox = document.getElementById("successBox");
-  
-  btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
-  btn.disabled = true;
+// --- FORM SUBMISSION ---
+    document.getElementById("tailorForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        const successBox = document.getElementById("successBox");
+        
+        // Visual Feedback
+        btn.innerHTML = 'Sending... <i class="fa-solid fa-spinner fa-spin"></i>';
+        btn.disabled = true;
+        successBox.style.display = "none";
 
-  // These IDs come from your EmailJS Dashboard
-  const serviceID = 'service_1ekjutu';
-  const templateID = 'template_5jlslm8';
+        const serviceID = 'service_1ekjutu';
+        const templateID = 'template_5jlslm8';
 
-  emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
-      btn.disabled = false;
-      successBox.style.display = "block";
-      successBox.innerText = "🎉 Sent successfully! Check your email for a confirmation.";
-      this.reset();
-    }, (err) => {
-      btn.innerText = 'Error!';
-      btn.disabled = false;
-      alert("Failed to send: " + JSON.stringify(err));
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
+                btn.disabled = false;
+                successBox.style.display = "block";
+                successBox.style.background = "#ECFDF5";
+                successBox.style.color = "#065f46";
+                successBox.innerText = "🎉 Thank you! We’ll contact you shortly.";
+                this.reset();
+            }, (err) => {
+                btn.innerHTML = 'Submit <i class="fa-solid fa-paper-plane"></i>';
+                btn.disabled = false;
+                successBox.style.display = "block";
+                successBox.style.background = "#FEF2F2";
+                successBox.style.color = "#991B1B";
+                successBox.innerText = "❌ Error: " + (err.text || "Failed to send");
+                console.error("EmailJS Error:", err);
+            });
     });
-});
 </script>
 </body>
 </html>
